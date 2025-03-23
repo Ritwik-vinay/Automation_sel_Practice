@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class Project2_Cura {
     @Test
-    public void test_verify_URl () {
+    public void test_verify_URl () throws InterruptedException {
         WebDriver driver = new EdgeDriver();
         driver.manage().window().maximize();
         driver.navigate().to("https://katalon-demo-cura.herokuapp.com/");
@@ -22,9 +22,11 @@ public class Project2_Cura {
         login_pwd.sendKeys("ThisIsNotAPassword");
         WebElement login_btn =driver.findElement(By.id("btn-login"));
         login_btn.click();
+        Thread.sleep(3000);
         String currURL= driver.getCurrentUrl();
         System.out.println(currURL);
         Assert.assertEquals(currURL, "https://katalon-demo-cura.herokuapp.com/#appointment");
+
         driver.quit();
 
     }
